@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        OLD_VERSION = "v2"
-        VERSION = "v3"
+        OLD_VERSION = "v3"
+        VERSION = "v4"
         DOCKERHUB_CREDS = credentials('dockerhub')
     }
     stages {
