@@ -8,8 +8,8 @@ pipeline {
     stages {
         stage('Build Images') {
             steps {
-                sh "docker build -t ${DOCKERHUB_CREDS_USR}/task1-flask-app:${VERSION} TASK1"
-                sh "docker build -t ${DOCKERHUB_CREDS_USR}/task1-nginx:${VERSION} -f Task1/Dockerfile.nginx Task1 "
+                sh "docker build -t ${DOCKERHUB_CREDS_USR}/flask-app:${VERSION} TASK1"
+                sh "docker build -t ${DOCKERHUB_CREDS_USR}/nginx:${VERSION} -f Dockerfile.nginx Task1 "
                 // Docker build flask and nginx apps.
             }
         }
@@ -25,8 +25,8 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 sh "docker login -u ${DOCKERHUB_CREDS_USR} -p ${DOCKERHUB_CREDS_PSW}"
-                sh "docker push ${DOCKERHUB_CREDS_USR}/task1-flask-app:${VERSION}"
-                sh "docker push ${DOCKERHUB_CREDS_USR}/task1-nginx:${VERSION}"
+                sh "docker push ${DOCKERHUB_CREDS_USR}/Task1-flask-app:${VERSION}"
+                sh "docker push ${DOCKERHUB_CREDS_USR}/Task1-nginx:${VERSION}"
                 sh "docker logout"
 
                 //
