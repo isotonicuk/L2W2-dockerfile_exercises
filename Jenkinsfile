@@ -8,8 +8,8 @@ pipeline {
     stages {
         stage('Build Images') {
             steps {
-                sh "docker build -t ${DOCKERHUB_CREDS_USR}/flask-app:${VERSION} TASK1"
-                sh "docker build -t ${DOCKERHUB_CREDS_USR}/nginx:${VERSION} -f Dockerfile.nginx Task1 "
+                sh "docker build -t ${DOCKERHUB_CREDS_USR}/flask-app:${VERSION}"
+                sh "docker build -t ${DOCKERHUB_CREDS_USR}/nginx:${VERSION} -f Dockerfile.nginx"
                 // Docker build flask and nginx apps.
             }
         }
@@ -36,8 +36,8 @@ pipeline {
     post {
         always {
             cleanWs()
-            sh "docker rmi ${DOCKERHUB_CREDS_USR}/task1-flask-app:${VERSION}"
-            sh "docker rmi ${DOCKERHUB_CREDS_USR}/task1-nginx:${VERSION}"
+            sh "docker rmi ${DOCKERHUB_CREDS_USR}/task1-flask-app:${VERSION} || true"
+            sh "docker rmi ${DOCKERHUB_CREDS_USR}/task1-nginx:${VERSION} || true"
         }
     }
 }
