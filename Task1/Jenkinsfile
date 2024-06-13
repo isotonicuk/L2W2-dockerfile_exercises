@@ -1,7 +1,8 @@
 pipeline {
     agent any
     environment {
-        VERSION = "v1"
+        OLD_VERSION ='v1'
+        VERSION = "v2"
         DOCKERHUB_CREDS = credentials('dockerhub')
     }
     stages {
@@ -35,5 +36,8 @@ pipeline {
     post {
         always {
             cleanWs()
+            sh "docker rmi ${DOCKERHUB_CREDS_USR}/task1-flask-app:${VERSION}"
+            sh "docker rmi ${DOCKERHUB_CREDS_USR}/task1-nginx:${VERSION}"
+        }
     }
 }
