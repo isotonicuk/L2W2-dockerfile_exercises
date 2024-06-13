@@ -1,5 +1,5 @@
 # Use Python 3.6 or later as a base image
-FROM python:latest
+FROM python:3.8
 # Copy contents into image
 COPY . .
 # Install pip dependencies from requirements
